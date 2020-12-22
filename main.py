@@ -34,7 +34,6 @@ async def on_ready():
             name=f"Serving {len(members)} people in {len(guilds)} servers"
         )
     )
-    bot.session = aiohttp.ClientSession()
 
 
 def extensions():
