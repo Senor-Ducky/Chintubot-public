@@ -51,24 +51,6 @@ for extension in extensions():
         print(f"Failed to load {extension}; {ex}")
 
 
-async def command_log(ctx: commands.Context):
-    log_channel = GUILD_DATA[ctx.guild.id].get("log_channel")
-    if log_channel is None:
-        return
-    webhook = Webhook.from_url(log_channel, adapter=AsyncWebhookAdapter(bot.session))
-    try:
-        await webhook.send(
-            embed=system_embed(
-                ctx.author,
-                f"`{ctx.command}` used by {ctx.author.mention} in "
-                f"{ctx.channel.mention}",
-            ),
-            username="Epsilon",
-        )
-    except discord.NotFound:
-        await guild.unset_variable(ctx.guild.id, "log_channel")
-
-
 bot.after_invoke(command_log)
 
 bot.run(settings.token)
