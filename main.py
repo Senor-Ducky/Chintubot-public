@@ -1,55 +1,73 @@
-from pathlib import Path
-
-import aiohttp
 import discord
-from discord import Webhook, AsyncWebhookAdapter
 from discord.ext import commands
 
-from database import guild
-from utilities import settings, GUILD_DATA, system_embed
 
-intents = discord.Intents.all()
-
-
-async def fetch_prefix(_bot, message):
-    prefix = settings.prefix
-    if not isinstance(message.channel, discord.DMChannel):
-        await guild.query_guild(message.guild.id)
-        prefix = GUILD_DATA[message.guild.id]["prefix"]
-    return commands.when_mentioned_or(prefix)(_bot, message)
-
-
-bot = commands.AutoShardedBot(
-    command_prefix=fetch_prefix, help_command=None, intents=intents
-)
+bot = commands.Bot(command_prefix='$')
 
 
 @bot.event
 async def on_ready():
-    print("Ready")
-    guilds = bot.guilds
-    members = [member for member in bot.get_all_members()]
-    await bot.change_presence(
-        activity=discord.Game(
-            name=f"Serving {len(members)} people in {len(guilds)} servers"
-        )
+    print('We have logged in as {0.user}'.format(bot))
+
+
+@bot.command()
+async def warn(ctx, member, *reason):
+    print(reason)
+    embed = discord.Embed(
+        description=str(member + " is warned | Reason = " + " ".join(reason)),
+        colour=discord.Colour.blue()
     )
+    await member.ban(reason="BC")
+    await ctx.send(embed=embed)
 
 
-def extensions():
-    files = Path("cogs").rglob("*.py")
-    for file in files:
-        yield file.as_posix()[:-3].replace("/", ".")
+@bot.command()
+async def kick(ctx, member: discord.Member, *reason):
+    print(reason)
+    embed = discord.Embed(
+        description=str(
+            str(member) + " is Kicked | reason = " + " ".join(reason)),
+        colour=discord.Colour.green()
+    )
+    await member.kick(reason=" ".join(reason))
+    await ctx.send(embed=embed)
 
 
-for extension in extensions():
-    try:
-        bot.load_extension(extension)
-        print(f"Loading {extension}")
-    except Exception as ex:
-        print(f"Failed to load {extension}; {ex}")
+@bot.command()
+async def ban(ctx, member: discord.Member, *reason):
+    print(reason)
+    embed = discord.Embed(
+        description=str(
+            str(member) + " is banned | reason = " + " ".join(reason)),
+        colour=discord.Colour.green()
+    )
+    await member.ban(reason=" ".join(reason))
+    await ctx.send(embed=embed)
 
 
-bot.after_invoke(command_log)
+@bot.command()
+async def mute(ctx, member: discord.Member, *reason):
+    print(reason)
+    Muted = discord.utils.get(ctx.guild.roles, name="Muted")
+    await member.add_roles(Muted)
+    embed = discord.Embed(
+        description=str(
+            str(member) + " is Muted | reason = " + " ".join(reason)),
+        colour=discord.Colour.red()
+    )
+    await ctx.send(embed=embed)
 
-bot.run(settings.token)
+
+@ bot.command()
+async def unmute(ctx, member: discord.Member, *reason):
+    print(reason)
+    Muted = discord.utils.get(ctx.guild.roles, name="Muted")
+    await member.remove_roles(Muted)
+    embed = discord.Embed(
+        description=str(
+            str(member) + " is Unmuted | reason = " + " ".join(reason)),
+        colour=discord.Colour.green()
+    )
+    await ctx.send(embed=embed)
+
+bot.run('NzkwOTAwOTUwODg1MjAzOTc4.X-HV6A.VBQd4nfGOFXSkYdDvmBBGXn-aiw')
