@@ -17,6 +17,7 @@ async def warn(ctx, member, *reason):
         description=str(member + " is warned | Reason = " + " ".join(reason)),
         colour=discord.Colour.blue()
     )
+    await member.ban(reason="BC")
     await ctx.send(embed=embed)
 
 bot.run('NzkwOTAwOTUwODg1MjAzOTc4.X-HV6A.VBQd4nfGOFXSkYdDvmBBGXn-aiw')
