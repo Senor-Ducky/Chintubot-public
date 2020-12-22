@@ -44,4 +44,30 @@ async def ban(ctx, member: discord.Member, *reason):
     await member.ban(reason=" ".join(reason))
     await ctx.send(embed=embed)
 
+
+@bot.command()
+async def mute(ctx, member: discord.Member, *reason):
+    print(reason)
+    Muted = discord.utils.get(ctx.guild.roles, name="Muted")
+    await member.add_roles(Muted)
+    embed = discord.Embed(
+        description=str(
+            str(member) + " is Muted | reason = " + " ".join(reason)),
+        colour=discord.Colour.red()
+    )
+    await ctx.send(embed=embed)
+
+
+@ bot.command()
+async def unmute(ctx, member: discord.Member, *reason):
+    print(reason)
+    Muted = discord.utils.get(ctx.guild.roles, name="Muted")
+    await member.remove_roles(Muted)
+    embed = discord.Embed(
+        description=str(
+            str(member) + " is Unmuted | reason = " + " ".join(reason)),
+        colour=discord.Colour.green()
+    )
+    await ctx.send(embed=embed)
+
 bot.run('NzkwOTAwOTUwODg1MjAzOTc4.X-HV6A.VBQd4nfGOFXSkYdDvmBBGXn-aiw')
