@@ -20,16 +20,28 @@ async def warn(ctx, member, *reason):
     await member.ban(reason="BC")
     await ctx.send(embed=embed)
 
+
 @bot.command()
-async def ban(ctx, member, *reason):
-    print (reason)
+async def kick(ctx, member: discord.Member, *reason):
+    print(reason)
     embed = discord.Embed(
-        description = str(member + " is banned | reason = " + " ".join(reason)),
+        description=str(
+            str(member) + " is Kicked | reason = " + " ".join(reason)),
+        colour=discord.Colour.green()
+    )
+    await member.kick(reason=" ".join(reason))
+    await ctx.send(embed=embed)
+
+
+@bot.command()
+async def ban(ctx, member: discord.Member, *reason):
+    print(reason)
+    embed = discord.Embed(
+        description=str(
+            str(member) + " is banned | reason = " + " ".join(reason)),
         colour=discord.Colour.green()
     )
     await member.ban(reason=" ".join(reason))
     await ctx.send(embed=embed)
 
 bot.run('NzkwOTAwOTUwODg1MjAzOTc4.X-HV6A.VBQd4nfGOFXSkYdDvmBBGXn-aiw')
-
-
