@@ -19,8 +19,6 @@ async def warn(ctx, member, *reason):
     )
     await ctx.send(embed=embed)
 
-bot.run('NzkwOTAwOTUwODg1MjAzOTc4.X-HV6A.VBQd4nfGOFXSkYdDvmBBGXn-aiw')
-
 @bot.command()
 async def ban(ctx, member, *reason):
     print (reason)
@@ -30,3 +28,7 @@ async def ban(ctx, member, *reason):
     )
     await member.ban(reason=" ".join(reason))
     await ctx.send(embed=embed)
+
+bot.run('NzkwOTAwOTUwODg1MjAzOTc4.X-HV6A.VBQd4nfGOFXSkYdDvmBBGXn-aiw')
+
+
