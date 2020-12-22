@@ -57,4 +57,3 @@ def permission_check(ctx):
         return True
     return False
 
-# heroku logs --app everything-bot-01 --tail
