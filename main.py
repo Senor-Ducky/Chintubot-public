@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from pymongo import MongoClient
+
 
 bot = commands.Bot(command_prefix='$')
 
@@ -20,3 +20,13 @@ async def warn(ctx, member, *reason):
     await ctx.send(embed=embed)
 
 bot.run('NzkwOTAwOTUwODg1MjAzOTc4.X-HV6A.VBQd4nfGOFXSkYdDvmBBGXn-aiw')
+
+@bot.command()
+async def ban(ctx, member, *reason):
+    print (reason)
+    embed = discord.Embed(
+        description = str(member + " is banned | reason = " + " ".join(reason)),
+        colour=discord.Colour.green()
+    )
+    await member.ban(reason=" ".join(reason))
+    await ctx.send(embed=embed)
