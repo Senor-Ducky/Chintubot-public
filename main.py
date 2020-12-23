@@ -1,4 +1,5 @@
 import discord
+import os
 from discord.ext import commands
 
 
@@ -70,4 +71,6 @@ async def unmute(ctx, member: discord.Member, *reason):
     )
     await ctx.send(embed=embed)
 
-bot.run('NzkwOTAwOTUwODg1MjAzOTc4.X-HV6A.VBQd4nfGOFXSkYdDvmBBGXn-aiw')
+
+
+bot.run(os.getenv('TOKEN'))
