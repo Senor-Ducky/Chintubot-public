@@ -1,7 +1,9 @@
 import discord
 import os
 from discord.ext import commands
+from dotenv import load_dotenv
 
+load_dotenv()
 
 bot = commands.Bot(command_prefix='$')
 
@@ -73,4 +75,4 @@ async def unmute(ctx, member: discord.Member, *reason):
 
 
 
-bot.run(os.getenv('TOKEN'))
+bot.run(os.getenv("TOKEN"))
