@@ -26,26 +26,32 @@ async def on_command_error(ctx,error):
   elif isinstance(error, commands.CommandNotFound):
     pass
 
-@bot.command()
-@commands.has_permissions(kick_members=True)
-async def warn(ctx, member:  discord.Member, *, reason = 'No reason Provided'):
-    with open('warnings.json','r') as f:
-        warns = json.load(f)
-    if str(ctx.guild.id) not in warns:
-        warns[str(ctx.guild.id)] = {}
-    if str(member.id) not in warns[str(ctx.guild.id)]:
-        warns[str(ctx.guild.id)][str(member.id)] = {}
-        warns[str(ctx.guild.id)][str(member.id)]["warns"] = 1
-        warns[str(ctx.guild.id)][str(member.id)]["warnings"] = [reason]
-    else:
-        warns[str(ctx.guild.id)][str(member.id)]["warnings"].append(reason)
-    with open('warnings.json','w') as f:
-        json.dump(warns , f)
-        #await ctx.send(f"{member.mention} was warned for: {reason}")
+for filename in os.listdir('./cogs'):
+    if filename.endswith(".py"):
+        bot.load_extension(f'cogs.{filename[:3]}')
+
+
+
+# @bot.command()
+# @commands.has_permissions(kick_members=True)
+# async def warn(ctx, member:  discord.Member, *, reason = 'No reason Provided'):
+#     with open('warnings.json','r') as f:
+#         warns = json.load(f)
+#     if str(ctx.guild.id) not in warns:
+#         warns[str(ctx.guild.id)] = {}
+#     if str(member.id) not in warns[str(ctx.guild.id)]:
+#         warns[str(ctx.guild.id)][str(member.id)] = {}
+#         warns[str(ctx.guild.id)][str(member.id)]["warns"] = 1
+#         warns[str(ctx.guild.id)][str(member.id)]["warnings"] = [reason]
+#     else:
+#         warns[str(ctx.guild.id)][str(member.id)]["warnings"].append(reason)
+#     with open('warnings.json','w') as f:
+#         json.dump(warns , f)
+#         #await ctx.send(f"{member.mention} was warned for: {reason}")
         
-        embed = discord.Embed(title='You have been warned ', description=f'You received a warning from {member}')
-        embed.add_field(name='Reason:', value=f'{reason}')
-        await member.send(embed=embed)
+#         embed = discord.Embed(title='You have been warned ', description=f'You received a warning from {member}')
+#         embed.add_field(name='Reason:', value=f'{reason}')
+#         await member.send(embed=embed)
     #print(reason)
     #embed = discord.Embed(
     #    description=str(member + " is warned | Reason = " + reason),
