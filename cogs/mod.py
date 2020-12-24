@@ -2,12 +2,10 @@ import discord
 import io
 import asyncio
 from discord.ext import commands
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
-class Mod(commands.cog):
+
+class Mod(commands.Cog):
     def  __init__(self, commands):
         self.commands = commands
 
@@ -49,7 +47,7 @@ class Mod(commands.cog):
         await ctx.send(embed = warnings)
 
     @commands.command()
-    @commands.has_permissions(manage_guild=True)
+    @commands.has_permissions(kick_members=True)
     async def removewarn(self ,ctx, member: discord.Member, num: int, *, reason='No reason provided.'):
         with open('warnings.json' , 'r') as f:
             warns = json.load(f)
