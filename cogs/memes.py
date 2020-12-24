@@ -10,10 +10,9 @@ class Meme(commands.Cog):
     @commands.command()
     async def csmeme(self , ctx):
         title , url = redditapi.memes('ProgrammerHumor')
-        print(title , url)
         em = discord.Embed(title = title, color = discord.Colour.red())
         em.set_image(url = url)
-        await ctx.send(embed= em)
+        await ctx.send('works!')
 
 def setup(bot):
     bot.add_cog(Meme(bot))
