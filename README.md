@@ -3,7 +3,8 @@
 ### Prefix - $
 ### Memes
 ```
-csmeme
+csmeme - A random CS Meme from Reddit
+coffin - The Coffin Dance Meme with your target in the coffin ;}
 ```
 ### Moderation Commands
 ```
