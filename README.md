@@ -6,11 +6,11 @@ csmeme
 ```
 ### Moderation
 ```
-  ban        
-  kick       
-  mute       
-  removewarn 
-  unmute     
-  warn       
-  warns
+ban        
+kick       
+mute       
+removewarn 
+unmute     
+warn       
+warns
 ```
