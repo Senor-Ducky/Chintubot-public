@@ -4,6 +4,15 @@
 ```
 csmeme
 ```
+### GitHub
+```
+gituser, gitmember
+repos, repositories, github
+```
+### Google
+```
+gsearch
+```
 ### Moderation
 ```
 ban        

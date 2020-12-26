@@ -1,2 +1,4 @@
 discord
 praw
+beautifulsoup4
+google
