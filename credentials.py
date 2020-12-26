@@ -1,0 +1,9 @@
+CREDENTIALS = {
+	'DISCORD_TOKEN': 'YOUR TOKEN HERE',
+	'REDDIT_API_CLIENT_ID': 'YOUR KEY HERE',
+	'REDDIT_API_CLIENT_SECRET': 'YOUR SECRET HERE',
+	#'RAPID_API_KEY': ''
+}
+
+def get_credentials(key):
+	return CREDENTIALS[str(key)]

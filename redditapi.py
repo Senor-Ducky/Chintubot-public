@@ -1,12 +1,12 @@
 import praw
 import random
 import os
-from dotenv import load_dotenv
-load_dotenv()
+from credentials import get_credentials
+
 
 reddit = praw.Reddit(
-    client_id = os.getenv("CLIENT_ID"),
-    client_secret = os.getenv("SECRET"),
+    client_id = get_credentials('REDDIT_API_CLIENT_ID'), #os.getenv("CLIENT_ID"),
+    client_secret =  get_credentials('REDDIT_API_CLIENT_SECRET'), #os.getenv("SECRET"),
     user_agent = 'chintubot',
 )
 

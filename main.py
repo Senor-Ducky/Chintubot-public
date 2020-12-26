@@ -3,17 +3,14 @@ import os
 from discord.ext import commands , tasks
 import requests
 import json
-from dotenv import load_dotenv
 from itertools import cycle
-# import praw
+from credentials import get_credentials
 
-load_dotenv()
-
-bot = commands.Bot(command_prefix='$')
+bot = commands.Bot(command_prefix='$', case_insensitive=True)
 
 @bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(bot))
+    print(f'****Connected to the discord API successfully as {bot.user}****\n')
     change_status.start()
 
 status = cycle(['WhiteHatJr SEO', ' with wolf gupta', 'with Lana Rhoades'])
@@ -38,5 +35,5 @@ for filename in os.listdir('./cogs'):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
 
-bot.run(os.getenv("TOKEN"))
-
+#bot.run(os.getenv("TOKEN"))
+bot.run(get_credentials('DISCORD_TOKEN'))

@@ -12,7 +12,7 @@ class Meme(commands.Cog):
         title , url = redditapi.memes('ProgrammerHumor')
         em = discord.Embed(title = title, color = discord.Colour.red())
         em.set_image(url = url)
-        await ctx.send('works!')
+        await ctx.send(embed=em)
 
 def setup(bot):
     bot.add_cog(Meme(bot))
