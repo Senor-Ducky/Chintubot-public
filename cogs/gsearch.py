@@ -15,9 +15,9 @@ class Google(commands.Cog):
         except ValueError:
             number_of_results = 2
             search_string = " ".join(message[1:])
-        print(search_string)
         embed = discord.Embed(title=search_string, color=discord.Color.blue())
         i = 0
+        embed.set_footer(text=f"Requested by {ctx.author.display_name}", icon_url=str(ctx.author.avatar_url))
         for result in search(search_string, tld='com', lang='en', start=0, stop=number_of_results):
             embed.add_field(name="Result {}".format(i + 1), value=result, inline=False)
             i += 1
