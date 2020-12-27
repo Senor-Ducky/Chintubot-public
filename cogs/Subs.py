@@ -1,6 +1,5 @@
-"""Add Youtube API key in .env file"""
+"""Add Youtube API key in .env file with YT_API_KEY"""
 import asyncio
-
 import requests
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
