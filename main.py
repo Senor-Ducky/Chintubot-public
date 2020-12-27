@@ -25,7 +25,7 @@ async def change_status():
     await bot.change_presence(activity=discord.Game(next(status)))
 
 
-@bot.event
+#@bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
         embed = discord.Embed(title=':x: oops! You do not have permission to use this command.',
