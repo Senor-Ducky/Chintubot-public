@@ -1,8 +1,7 @@
-import redditapi
 import discord
-import io
-import asyncio
 from discord.ext import commands
+import redditapi
+
 
 class Meme(commands.Cog):
     def __init__(self , commands) :
