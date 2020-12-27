@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 from googlesearch import search
 
-
 class Google(commands.Cog):
     def __init__(self, commands):
         self.commands = commands
