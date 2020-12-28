@@ -45,6 +45,17 @@ class GitHub(commands.Cog):
         await ctx.send(embed=embed)
 
 
+    @commands.command()
+    async def contributors(self, ctx):
+    	url = 'https://api.github.com/repos/soulless-404/chintubot/contributors'
+    	response = requests.get(url)
+    	data = json.loads(response.text)
+    	embed = discord.Embed(title='People who have contributed in making the Chintu Bot')
+    	for contributor in data:
+    		embed.add_field(name=str(contributor['login']) + ' (' + contributor['html_url'] + ')', value = str(contributor['contributions'])+ ' commits', inline=False)
+
+    	embed.set_thumbnail(url='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png')
+    	await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(GitHub(bot))
